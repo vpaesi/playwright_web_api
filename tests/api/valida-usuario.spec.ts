@@ -14,4 +14,12 @@ test.describe("Valida usuário", () => {
 
     expect(body.login).toBe("octocat");
   });
+
+   test("deve validar usuário inexistente", async ({ request }) => {
+    const response = await request.get("https://api.github.com/users/usuario-inexistente-010920261335");
+
+    expect(response.status()).toBe(404);
+    const body = await response.json();
+    expect(body.message).toBe("Not Found");
+  });
 });
