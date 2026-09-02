@@ -15,6 +15,8 @@ test.describe("Adicionar Tarefas", () => {
     await expect(todoPage.tarefas).toHaveCount(2);
     await expect(todoPage.tarefas.first()).toHaveText("1ª tarefa");
     await expect(todoPage.tarefas.last()).toHaveText("2ª tarefa");
+
+    await expect(todoPage.contadorItens).toContainText("2 items left");
   });
 
 });

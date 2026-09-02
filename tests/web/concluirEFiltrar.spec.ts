@@ -14,6 +14,7 @@ test.describe("Concluir e Filtrar Tarefas", () => {
 
     await expect(todoPage.tarefas).toHaveCount(1);
     await expect(todoPage.tarefas.first()).toHaveText("2ª tarefa");
+    await expect(todoPage.tarefas).not.toContainText("1ª tarefa");
   });
 
   test("deve filtrar por Completed", async ({ page }) => {
@@ -27,6 +28,7 @@ test.describe("Concluir e Filtrar Tarefas", () => {
 
     await expect(todoPage.tarefas).toHaveCount(1);
     await expect(todoPage.tarefas.first()).toHaveText("1ª tarefa");
+    await expect(todoPage.tarefas).not.toContainText("2ª tarefa");
   });
 
 });
