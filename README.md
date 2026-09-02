@@ -20,7 +20,6 @@ No terminal, dentro da pasta do repositório, execute os seguintes comandos:
 1️⃣ Instalação dos pacotes
 ```bash
 npm install
-npx playwright install
 ```
 
 2️⃣ Rodar os testes
