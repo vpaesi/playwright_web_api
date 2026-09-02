@@ -10,12 +10,19 @@ test.describe("Concluir e Filtrar Tarefas", () => {
     await todoPage.adicionarDuasTarefas();
 
     await todoPage.concluirTarefa(0);
-
     await todoPage.filtrarPor("Active");
 
     await expect(todoPage.tarefas).toHaveCount(1);
     await expect(todoPage.tarefas.first()).toHaveText("2ª tarefa");
+  });
 
+  test("deve filtrar por Completed", async ({ page }) => {
+    const todoPage = new TodoPage(page);
+
+    await todoPage.acessar();
+    await todoPage.adicionarDuasTarefas();
+
+    await todoPage.concluirTarefa(0);
     await todoPage.filtrarPor("Completed");
 
     await expect(todoPage.tarefas).toHaveCount(1);
