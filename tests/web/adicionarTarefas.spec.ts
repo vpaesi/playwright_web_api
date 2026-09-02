@@ -1,18 +1,20 @@
 import { test, expect } from "@playwright/test";
+import { TodoPage } from "./pages/TodoPage";
 
 test.describe("Adicionar Tarefas", () => {
+
   test("deve adicionar duas tarefas", async ({ page }) => {
-    await page.goto("https://demo.playwright.dev/todomvc/#/");
+    const todoPage = new TodoPage(page);
+
+    await todoPage.acessar();
+
     await expect(page.locator("h1")).toHaveText("todos");
 
-    await page.locator(".new-todo").fill("1ª tarefa");
-    await page.locator(".new-todo").press("Enter");
-    await page.locator(".new-todo").fill("2ª tarefa");
-    await page.locator(".new-todo").press("Enter");
+    await todoPage.adicionarDuasTarefas();
 
-    const tarefas = page.locator(".todo-list li");
-    await expect(tarefas).toHaveCount(2);
-    await expect(tarefas.first()).toHaveText("1ª tarefa");
-    await expect(tarefas.last()).toHaveText("2ª tarefa");
+    await expect(todoPage.tarefas).toHaveCount(2);
+    await expect(todoPage.tarefas.first()).toHaveText("1ª tarefa");
+    await expect(todoPage.tarefas.last()).toHaveText("2ª tarefa");
   });
+
 });
